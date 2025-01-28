@@ -1,6 +1,6 @@
 import React from "react";
 
-function Filters({ areas, competition, area, onFilterChange, onApplyFilters }) {
+function Filters({ areas, leagues, competition, area, onFilterChange, onApplyFilters }) {
   return (
     <div className="my-4">
       <h2 className="text-xl font-bold">Filter Matches</h2>
@@ -11,8 +11,11 @@ function Filters({ areas, competition, area, onFilterChange, onApplyFilters }) {
         className="p-2 m-2"
       >
         <option value="">Select Competition</option>
-        <option value="League">League</option>
-        <option value="Cup">Cup</option>
+        {leagues.map((league) => (
+          <option key={league} value={league}>
+            {league}
+          </option>
+        ))}
       </select>
       <select
         name="area"
