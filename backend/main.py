@@ -18,6 +18,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.include_router(
+    api_v1_router,
+    prefix="/api/v1",
+)
 
 @app.on_event("startup")
 async def startup_event():
@@ -28,16 +32,7 @@ async def startup_event():
 
 @app.on_event("shutdown")
 async def shutdown_event():
-    """
-    This function is empty because it serves as a placeholder for future implementation.
-    The purpose of this function is to handle shutdown events or cleanup tasks when the application is being shut down.
-    Depending on the specific requirements of the application, the implementation for this function may vary.
-    For now, it remains empty, awaiting future development.
-    """
     pass
 
 
-app.include_router(
-    api_v1_router,
-    prefix="/api/v1",
-)
+

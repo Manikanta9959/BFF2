@@ -2,10 +2,11 @@ import uuid
 from datetime import datetime, timedelta
 from re import T
 
-
 from db.session import Base
 from sqlalchemy import Boolean, Column, DateTime, ForeignKey, Integer, String, Text
 from sqlalchemy_utils.types.uuid import UUIDType
+from sqlalchemy.orm import relationship  # Import relationship
+
 
 class Area(Base):
     __tablename__ = "areas"

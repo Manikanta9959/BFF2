@@ -12,12 +12,12 @@ services:
     depends_on:
       - db
 
-  app:
+  frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
       no_cache: true
-    container_name: container_app
+    container_name: container_frontend
     ports:
       - "3000:80"
     networks:

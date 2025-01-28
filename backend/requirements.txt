@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+python-decouple
+sqlalchemy
+pymysql
+sqlalchemy_utils

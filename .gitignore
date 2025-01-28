@@ -1,4 +1,4 @@
 backend/envAPI
-
+*.pyc
 
 frontend/node_modules
