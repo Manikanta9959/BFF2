@@ -7,7 +7,7 @@ function PlayerPage({ playerId }) {
 
   useEffect(() => {
     axios
-      .get(`${backend_api}/players/${playerId}`)
+      .get(`${backend_api}/api/v1/players/${playerId}`)
       .then((response) => setPlayer(response.data))
       .catch((error) => {
         console.error("Error fetching player details:", error);

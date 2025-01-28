@@ -10,13 +10,15 @@ function LandingPage() {
   const backend_api = process.env.REACT_APP_BACKEND_API; 
 
   useEffect(() => {
+    console.log("heyyyyyyyyyyyyyyyyy")
+    console.log(backend_api)
     axios
-      .get(`${backend_api}/matches`)
+      .get(`${backend_api}/api/v1/matches`)
       .then((response) => setMatches(response.data))
       .catch(() => setMatches([]));
 
     axios
-      .get(`${backend_api}/areas`)
+      .get(`${backend_api}/api/v1/areas`)
       .then((response) => setAreas(response.data))
       .catch(() => setAreas([]));
   }, [backend_api]);
@@ -27,7 +29,7 @@ function LandingPage() {
 
   const applyFilters = () => {
     axios
-      .get(`${backend_api}/matches`, {
+      .get(`${backend_api}/api/v1/matches`, {
         params: {
           competition: filters.competition,
           area_id: filters.area,
