@@ -34,7 +34,7 @@ services:
       - current_docker_network
     volumes:
       - db-data:/var/lib/mysql
-    #   - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
 
 volumes:
   db-data:
