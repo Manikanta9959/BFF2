@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios"; 
 
 function PlayerPage({ playerId }) {
   const [player, setPlayer] = useState(null);
+  const backend_api = process.env.REACT_APP_BACKEND_API;
 
   useEffect(() => {
-    // Fetch player details
-    fetch(`http://localhost:8000/players/${playerId}`)
-      .then((response) => response.json())
-      .then((data) => setPlayer(data));
-  }, [playerId]);
+    axios
+      .get(`${backend_api}/players/${playerId}`)
+      .then((response) => setPlayer(response.data))
+      .catch((error) => {
+        console.error("Error fetching player details:", error);
+        setPlayer(null); 
+      });
+  }, [playerId, backend_api]);
 
   return player ? (
     <div>

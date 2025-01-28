@@ -4,3 +4,4 @@ python-decouple
 sqlalchemy
 pymysql
 sqlalchemy_utils
+cryptography

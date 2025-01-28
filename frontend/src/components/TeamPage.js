@@ -1,18 +1,24 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 function TeamPage() {
   const [team, setTeam] = useState({});
   const [players, setPlayers] = useState([]);
+  const backend_api = process.env.REACT_APP_BACKEND_API;
 
   useEffect(() => {
-    // Fetch team and players details
-    fetch("http://localhost:8000/teams")
-      .then((response) => response.json())
-      .then((data) => {
-        setTeam(data[0]); // Assuming you're fetching a single team, modify as needed
-        setPlayers(data[0].players);
+    axios
+      .get(`${backend_api}/teams`)
+      .then((response) => {
+        setTeam(response.data[0]); 
+        setPlayers(response.data[0].players); 
+      })
+      .catch((error) => {
+        console.error("Error fetching team data:", error);
+        setTeam({});
+        setPlayers([]); 
       });
-  }, []);
+  }, [backend_api]);
 
   return (
     <div>
