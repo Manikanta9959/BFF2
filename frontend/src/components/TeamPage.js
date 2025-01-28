@@ -8,7 +8,7 @@ function TeamPage() {
 
   useEffect(() => {
     axios
-      .get(`${backend_api}/api/v1/teams`)
+      .get(`${backend_api}/api/v1/teams/`)
       .then((response) => {
         setTeam(response.data[0]); 
         setPlayers(response.data[0].players); 

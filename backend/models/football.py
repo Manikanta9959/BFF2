@@ -5,7 +5,7 @@ from re import T
 from db.session import Base
 from sqlalchemy import Boolean, Column, DateTime, ForeignKey, Integer, String, Text
 from sqlalchemy_utils.types.uuid import UUIDType
-from sqlalchemy.orm import relationship  # Import relationship
+from sqlalchemy.orm import relationship
 
 
 class Area(Base):
