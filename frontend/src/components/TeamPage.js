@@ -4,7 +4,6 @@ import TeamCard from "../reusable_components/TeamCard";
 
 function TeamPage() {
   const [teams, setTeam] = useState([]);
-  const [players, setPlayers] = useState([]);
   const backend_api = process.env.REACT_APP_BACKEND_API;
 
   useEffect(() => {

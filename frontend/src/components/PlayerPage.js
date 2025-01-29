@@ -14,7 +14,7 @@ function PlayerPage() {
         console.error("Error fetching player details:", error);
         setPlayers([]);
       });
-  }, []);
+  }, [backend_api]);
 
   // Filter players based on search input
   const filteredPlayers = players.filter(
