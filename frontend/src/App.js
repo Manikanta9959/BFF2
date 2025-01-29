@@ -50,8 +50,16 @@ function App() {
         >
           Matches
         </button>
+        <button
+          className={`px-6 py-2 mr-4 rounded-lg text-lg font-semibold ${
+            activeTab === "players" ? "bg-blue-500 text-white" : "bg-gray-200"
+          }`}
+          onClick={() => setActiveTab("players")}
+        >
+          Players
+        </button>
       </div>
-      {activeTab === "teams" ? <TeamPage /> : <LandingPage />}
+      {activeTab === "teams" ? <TeamPage /> : activeTab === "players"? <PlayerPage/> : <LandingPage />}
     </div>
   );
 }

@@ -1,30 +1,70 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios"; 
+import axios from "axios";
 
-function PlayerPage({ playerId }) {
-  const [player, setPlayer] = useState(null);
+function PlayerPage() {
+  const [players, setPlayers] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
   const backend_api = process.env.REACT_APP_BACKEND_API;
 
   useEffect(() => {
     axios
-      .get(`${backend_api}/api/v1/players/${playerId}`)
-      .then((response) => setPlayer(response.data))
+      .get(`${backend_api}/api/v1/players/`)
+      .then((response) => setPlayers(response.data || []))
       .catch((error) => {
         console.error("Error fetching player details:", error);
-        setPlayer(null); 
+        setPlayers([]);
       });
-  }, [playerId, backend_api]);
+  }, []);
 
-  return player ? (
-    <div>
-      <h2 className="text-xl font-bold">{player.name}</h2>
-      <p>Position: {player.position}</p>
-      <p>Nationality: {player.nationality}</p>
-      <p>Goals: {player.goals}</p>
-      <p>Assists: {player.assists}</p>
+  // Filter players based on search input
+  const filteredPlayers = players.filter(
+    (player) =>
+      player.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      player.position.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      player.nationality.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  return (
+    <div className="p-4">
+      {/* Search Input */}
+      <div className="mb-4">
+        <input
+          type="text"
+          placeholder="Search by Name, Position, or Nationality..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+
+      {/* Player Table */}
+      {filteredPlayers.length > 0 ? (
+        <div className="rounded-lg shadow-md">
+          {/* Header Row - Blue Background */}
+          <div className="grid grid-cols-3 font-bold text-lg bg-blue-500 text-white py-2 px-4 rounded-t-lg text-left">
+            <div>Name</div>
+            <div>Position</div>
+            <div>Nationality</div>
+          </div>
+
+          {/* Player Data Rows - Gray Background */}
+          {filteredPlayers.map((player, index) => (
+            <div
+              key={player.id}
+              className={`grid grid-cols-3 py-2 px-4 text-left ${
+                index % 2 === 0 ? "bg-gray-100" : "bg-gray-200"
+              }`}
+            >
+              <div>{player.name}</div>
+              <div>{player.position}</div>
+              <div>{player.nationality}</div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <p className="text-gray-600 text-center">No players found.</p>
+      )}
     </div>
-  ) : (
-    <p>Loading player details...</p>
   );
 }
 
