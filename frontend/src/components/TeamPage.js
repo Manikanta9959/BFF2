@@ -23,15 +23,16 @@ function TeamPage() {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-3 p-1">
-        {teams.map((team) => (
-          <TeamCard
-            key={team.id}
-            team={`Team ${team.name}`}
-            home_city={team.home_city}
-            area_id={team.area_id}
-          />
-        ))}
-      </div>
+      {teams.map((team) => (
+        <TeamCard
+          key={team.id}
+          team={`Team: ${team.name}`}
+          home_city={team.home_city}
+          area_name={team.area_name}  
+          players_list={team.players_list}  
+        />
+      ))}
+    </div>
   );
 }
 

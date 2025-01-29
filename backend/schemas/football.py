@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from typing import List
 
 class AreaSchema(BaseModel):
     id: int
@@ -14,6 +15,8 @@ class TeamSchema(BaseModel):
     name: str
     home_city: str
     area_id: int
+    area_name: str
+    players_list: List[str]
 
     class Config:
         orm_mode = True
