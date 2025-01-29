@@ -21,13 +21,13 @@ const TeamCard = ({ team, home_city, area_name, players_list }) => {
 
         <div className="mb-2">
           <p className="text-gray-600 text-sm">
-            <span className="font-semibold">Home City:</span> {home_city}
+            <span className="font-semibold">Home City: </span> {home_city}
           </p>
         </div>
 
         <div className="mb-2">
           <p className="text-gray-600 text-sm">
-            <span className="font-semibold">Area:</span> {area_name}
+            <span className="font-semibold">Country: </span> {area_name}
           </p>
         </div>
       </button>

@@ -26,7 +26,7 @@ def get_teams(db: Session = Depends(GetSQLDB())):
                 "name": team.name,
                 "home_city": team.home_city,
                 "area_id": team.area_id,
-                "area_name": area.city,
+                "area_name": area.country,
                 "players_list": [player.name],  
             }
         else:
