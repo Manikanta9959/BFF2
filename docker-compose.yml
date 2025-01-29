@@ -12,12 +12,12 @@ services:
     depends_on:
       - db
 
-  frontend:
+  app:
     build:
       context: ./frontend
       dockerfile: Dockerfile
       no_cache: true
-    container_name: container_frontend
+    container_name: container_app
     ports:
       - "3000:80"
     networks:
@@ -27,7 +27,7 @@ services:
     container_name: container_db
     environment:
       MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: files_db
+      MYSQL_DATABASE: football_db
     ports:
       - "3307:3306"
     networks:

@@ -1,3 +1,6 @@
+CREATE DATABASE IF NOT EXISTS football_db;
+USE football_db;
+
 -- Create areas table
 CREATE TABLE areas (
     id INTEGER PRIMARY KEY,

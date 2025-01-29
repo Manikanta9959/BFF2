@@ -23,7 +23,7 @@ function AreaPage() {
       {areas.map((area) => (
         <AreaCard
           key={area.id}
-          city={`Location: ${area.city}`}
+          city={`${area.city}`}
           country={area.country}
           teams_list={area.teams_list}  
         />
