@@ -10,6 +10,17 @@ class AreaSchema(BaseModel):
         orm_mode = True
 
 
+
+class AreaTeamSchema(BaseModel):
+    id: int
+    city: str
+    country: str
+    teams_list : List[str]
+
+    class Config:
+        orm_mode = True
+
+
 class TeamSchema(BaseModel):
     id: int
     name: str

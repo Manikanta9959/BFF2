@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Matches from "./Matches";
 import MatchCard from "../reusable_components/MatchCard";
 import Filters from "./Filters";
 
@@ -12,7 +11,6 @@ function LandingPage() {
   const backend_api = process.env.REACT_APP_BACKEND_API; 
 
   useEffect(() => {
-    console.log("heyyyyyyyyyyyyyyyyy")
     console.log(backend_api)
     axios
       .get(`${backend_api}/api/v1/matches/`)

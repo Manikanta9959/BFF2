@@ -37,17 +37,14 @@ function PlayerPage() {
         />
       </div>
 
-      {/* Player Table */}
       {filteredPlayers.length > 0 ? (
         <div className="rounded-lg shadow-md">
-          {/* Header Row - Blue Background */}
           <div className="grid grid-cols-3 font-bold text-lg bg-blue-500 text-white py-2 px-4 rounded-t-lg text-left">
             <div>Name</div>
             <div>Position</div>
             <div>Nationality</div>
           </div>
 
-          {/* Player Data Rows - Gray Background */}
           {filteredPlayers.map((player, index) => (
             <div
               key={player.id}

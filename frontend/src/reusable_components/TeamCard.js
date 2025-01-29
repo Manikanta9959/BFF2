@@ -32,9 +32,9 @@ const TeamCard = ({ team, home_city, area_name, players_list }) => {
         </div>
       </button>
 
-      {/* Absolutely position the player list box on top of the team card */}
       {isPlayerListVisible && (
         <PlayerListBox
+          label = {"Team Players"}
           players_list={players_list}
           onClose={() => setIsPlayerListVisible(false)}
         />

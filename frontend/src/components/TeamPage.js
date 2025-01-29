@@ -12,12 +12,10 @@ function TeamPage() {
       .get(`${backend_api}/api/v1/teams/`)
       .then((response) => {
         setTeam(response.data); 
-        // setPlayers(response.data.players); 
       })
       .catch((error) => {
         console.error("Error fetching team data:", error);
         setTeam([]);
-        // setPlayers([]); 
       });
   }, [backend_api]);
 
