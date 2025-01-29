@@ -44,13 +44,7 @@ def get_teams(db: Session = Depends(GetSQLDB())):
         for team in teams_dict.values()
     ]
 
-@router.post("/", response_model=TeamSchema)
-def create_team(team: TeamSchema, db: Session = Depends(GetSQLDB())):
-    new_team = Team(**team.dict())
-    db.add(new_team)
-    db.commit()
-    db.refresh(new_team)
-    return new_team
+
 
 @router.get("/{team_id}", response_model=TeamSchema)
 def get_team(team_id: int, db: Session = Depends(GetSQLDB())):
@@ -58,3 +52,13 @@ def get_team(team_id: int, db: Session = Depends(GetSQLDB())):
     if not team:
         raise HTTPException(status_code=404, detail="Team not found")
     return team
+
+
+
+# @router.post("/", response_model=TeamSchema)
+# def create_team(team: TeamSchema, db: Session = Depends(GetSQLDB())):
+#     new_team = Team(**team.dict())
+#     db.add(new_team)
+#     db.commit()
+#     db.refresh(new_team)
+#     return new_team

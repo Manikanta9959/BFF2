@@ -15,13 +15,13 @@ def get_players(db: Session = Depends(GetSQLDB()), team_id: int = None):
         query = query.filter(Player.team_id == team_id)
     return query.all()
 
-@router.post("/", response_model=PlayerSchema)
-def create_player(player: PlayerSchema, db: Session = Depends(GetSQLDB())):
-    new_player = Player(**player.dict())
-    db.add(new_player)
-    db.commit()
-    db.refresh(new_player)
-    return new_player
+# @router.post("/", response_model=PlayerSchema)
+# def create_player(player: PlayerSchema, db: Session = Depends(GetSQLDB())):
+#     new_player = Player(**player.dict())
+#     db.add(new_player)
+#     db.commit()
+#     db.refresh(new_player)
+#     return new_player
 
 @router.get("/{player_id}", response_model=PlayerSchema)
 def get_player(player_id: int, db: Session = Depends(GetSQLDB())):

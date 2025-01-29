@@ -12,10 +12,10 @@ router = APIRouter()
 def get_areas(db: Session = Depends(GetSQLDB())):
     return db.query(Area).all()
 
-@router.post("/", response_model=AreaSchema)
-def create_area(area: AreaSchema, db: Session = Depends(GetSQLDB())):
-    new_area = Area(**area.dict())
-    db.add(new_area)
-    db.commit()
-    db.refresh(new_area)
-    return new_area
+# @router.post("/", response_model=AreaSchema)
+# def create_area(area: AreaSchema, db: Session = Depends(GetSQLDB())):
+#     new_area = Area(**area.dict())
+#     db.add(new_area)
+#     db.commit()
+#     db.refresh(new_area)
+#     return new_area

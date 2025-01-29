@@ -61,10 +61,10 @@ def get_list_leagues(db: Session = Depends(GetSQLDB())):
     
     return leagues
 
-@router.post("/", response_model=MatchSchema)
-def create_match(match: MatchSchema, db: Session = Depends(GetSQLDB())):
-    new_match = Match(**match.dict())
-    db.add(new_match)
-    db.commit()
-    db.refresh(new_match)
-    return new_match
+# @router.post("/", response_model=MatchSchema)
+# def create_match(match: MatchSchema, db: Session = Depends(GetSQLDB())):
+#     new_match = Match(**match.dict())
+#     db.add(new_match)
+#     db.commit()
+#     db.refresh(new_match)
+#     return new_match
