@@ -60,8 +60,12 @@ function LandingPage() {
         {matches.map((match) => (
           <MatchCard
             key={match.id}
-            teamA={`Team ${match.home_team_id}`}
-            teamB={`Team ${match.away_team_id}`}
+            teamA={`${match.hometeam_name}`}
+            teamB={`${match.awayteam_name}`}
+            teamAID={`${match.home_team_id}`}
+            teamBID={`${match.away_team_id}`}
+            areaID={`${match.area_id}`}
+            areaName={`${match.area_name}`}
             league={match.competition}
             date={new Date(match.date).toLocaleString()}
           />

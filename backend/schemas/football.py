@@ -34,6 +34,9 @@ class MatchSchema(BaseModel):
     id: int
     home_team_id: int
     away_team_id: int
+    hometeam_name: str
+    awayteam_name: str
+    area_name: str
     competition: str
     date: str
     area_id: int
