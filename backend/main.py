@@ -13,11 +13,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(
-    api_v1_router,
-    prefix="/api/v1"
-)
-
 @app.on_event("startup")
 async def startup_event():
     pass
@@ -28,4 +23,8 @@ async def shutdown_event():
     pass
 
 
+app.include_router(
+    api_v1_router,
+    prefix="/api/v1"
+)
 

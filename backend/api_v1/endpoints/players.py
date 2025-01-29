@@ -1,19 +1,34 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from typing import List
+from typing import List, Union
 
 from db.session import GetSQLDB
-from models.football import Player
+from models.football import Player, Team
 from schemas.football import PlayerSchema
 
 router = APIRouter()
 
-@router.get("/", response_model=List[PlayerSchema])
+@router.get("/", response_model=Union[List[PlayerSchema], List[str]])
 def get_players(db: Session = Depends(GetSQLDB()), team_id: int = None):
-    query = db.query(Player)
+    query = db.query(Player, Team).join(Team, Team.id == Player.team_id)
+
+    players = query.all()
     if team_id:
         query = query.filter(Player.team_id == team_id)
-    return query.all()
+        return [player.name for player, team in query]
+    
+    result = [
+        {
+            "id": player.id,
+            "name": player.name,
+            "position": player.position,
+            "nationality": player.nationality,
+            "team": team.name,
+        }
+        for player, team in players
+    ]
+
+    return result
 
 # @router.post("/", response_model=PlayerSchema)
 # def create_player(player: PlayerSchema, db: Session = Depends(GetSQLDB())):

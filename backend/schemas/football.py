@@ -38,7 +38,7 @@ class PlayerSchema(BaseModel):
     name: str
     position: str
     nationality: str
-    team_id: int
+    team: str
 
     class Config:
         orm_mode = True

@@ -39,22 +39,24 @@ function PlayerPage() {
 
       {filteredPlayers.length > 0 ? (
         <div className="rounded-lg shadow-md">
-          <div className="grid grid-cols-3 font-bold text-lg bg-blue-500 text-white py-2 px-4 rounded-t-lg text-left">
+          <div className="grid grid-cols-4 font-bold text-lg bg-blue-500 text-white py-2 px-4 rounded-t-lg text-left">
             <div>Name</div>
             <div>Position</div>
             <div>Nationality</div>
+            <div>Team</div>
           </div>
 
           {filteredPlayers.map((player, index) => (
             <div
               key={player.id}
-              className={`grid grid-cols-3 py-2 px-4 text-left ${
+              className={`grid grid-cols-4 py-2 px-4 text-left ${
                 index % 2 === 0 ? "bg-gray-100" : "bg-gray-200"
               }`}
             >
               <div>{player.name}</div>
               <div>{player.position}</div>
               <div>{player.nationality}</div>
+              <div>{player.team}</div>
             </div>
           ))}
         </div>
