@@ -9,7 +9,7 @@ const TeamPlayersCard = ({ isOpen, onClose, teamA, teamB, teamAPlayers, teamBPla
         <button className="absolute top-2 right-2 text-gray-600 hover:text-black" onClick={onClose}>
           ✖
         </button>
-        <h2 className="text-xl font-bold mb-4">{teamA} vs {teamB}</h2>
+        <h2 className="text-xl font-bold mb-4">Players Info</h2>
 
         <div className="grid grid-cols-2 gap-4">
           <div>

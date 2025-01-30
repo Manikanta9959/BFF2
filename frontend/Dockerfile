@@ -1,41 +1,39 @@
-# Use the official Node.js image as the base
-FROM node:18
-# Set the working directory inside the container
+# Stage 1: Build React App
+FROM node:18-alpine AS build
+
+# Set working directory
 WORKDIR /app
 
-# Install Nginx
-RUN apt-get update && \
-    apt-get install -y nginx && \
-    rm -rf /var/lib/apt/lists/* && \
-    # Remove the default Nginx configuration
-    rm /etc/nginx/sites-enabled/default
-# Remove the default Nginx configuration file
-# RUN rm /etc/nginx/conf.d/default.conf
-
-# Copy the Nginx configuration file from your project into the container
-COPY nginx.conf /etc/nginx/conf.d
-# Copy package.json and package-lock.json to the container
+# Copy package.json and package-lock.json
 COPY package*.json ./
 
 # Install dependencies
-RUN npm ci
+RUN npm install
 
-# Copy the app source code to the container
+# Copy the source code
 COPY . .
-# VOLUME [ "/app/.next/static" ]
 
-# Build the Next.js app
+# Build the React app
 RUN npm run build
 
-# Copy the updated start script to the container
-COPY start.sh start.sh
+# Stage 2: Serve with Nginx
+FROM nginx:alpine
 
-# Make the start script executable
-RUN chmod +x start.sh
+# Set working directory
+WORKDIR /usr/share/nginx/html
 
- 
-# Expose the port Nginx is listening on
+# Remove default Nginx static files
+RUN rm -rf ./*
+
+# Copy built React files from previous stage
+COPY --from=build /app/build .
+
+# Copy custom Nginx configuration
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Expose port 80
 EXPOSE 80
 
-# Run the start script to start Nginx and the Node.js app
-CMD ["./start.sh"]
+# Start Nginx
+CMD ["nginx", "-g", "daemon off;"]
+
