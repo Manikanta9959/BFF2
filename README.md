@@ -52,9 +52,9 @@ Stop the containers: To stop the services, press Ctrl+C or run the following in 
 
 View Logs (optional): To see logs from any container, you can use:
 ```bash 
-   docker compose logs container_backend
-   docker compose logs container_app
-   docker compose logs container_db
+   docker  logs container_backend
+   docker  logs container_app
+   docker  logs container_db
 ```
 
 
